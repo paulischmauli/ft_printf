@@ -92,7 +92,7 @@ cc main.c -L. -lftprintf -o demo
 - **`write` errors are not checked.** If `write` fails, the failure is not
   reported and the returned count may be lower than the length of the
   intended output. This is a conscious trade-off in order to keep
-  the focus on learning variadic functions and not drifting of to far.
+  the focus on learning variadic functions and not drifting off to far.
 - **Unsupported specifiers.** An unknown conversion character, or a `%` at the
   end of the format string, makes `ft_printf` stop and return `-1`. Output
   already written stays written.

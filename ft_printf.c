@@ -6,7 +6,7 @@
 /*   By: paziehen <paziehen@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/13 15:28:19 by paziehen         #+#    #+#              */
-/*   Updated: 2026/11/18 19:06:09 by paziehen        ###   ########.fr        */
+/*   Updated: 2026/11/18 21:50:20 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	print_format(va_list *ap, char identifier)
 {
 	if (identifier == 'c')
-		return (ft_print_char(va_arg(*ap, int)));
+		return (ft_print_char((unsigned char)va_arg(*ap, int)));
 	else if (identifier == 's')
 		return (ft_print_string(va_arg(*ap, char *)));
 	else if (identifier == 'd' || identifier == 'i')

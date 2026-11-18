@@ -6,18 +6,15 @@
 /*   By: paziehen <paziehen@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 19:18:35 by paziehen         #+#    #+#              */
-/*   Updated: 2026/11/18 18:58:31 by paziehen        ###   ########.fr        */
+/*   Updated: 2026/11/18 21:50:54 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_char(int c)
+int	ft_print_char(unsigned char c)
 {
-	unsigned char	letta;
-
-	letta = (unsigned char)c;
-	return (write(1, &letta, 1));
+	return (write(1, &c, 1));
 }
 
 int	ft_print_string(char *s)
