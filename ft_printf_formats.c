@@ -6,7 +6,7 @@
 /*   By: paziehen <paziehen@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/14 19:18:35 by paziehen         #+#    #+#              */
-/*   Updated: 2026/11/18 21:50:54 by paziehen        ###   ########.fr        */
+/*   Updated: 2026/11/19 00:27:43 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	ft_print_string(char *s)
 
 int	ft_print_pointer(void *pointer, char identifier)
 {
-	int				count;
-	unsigned long	nbr;
+	int			count;
+	uintptr_t	nbr;
 
-	nbr = (unsigned long)pointer;
+	nbr = (uintptr_t)pointer;
 	count = 0;
 	if (!nbr)
 		return (write(1, "(nil)", 5));
@@ -44,21 +44,22 @@ int	ft_print_pointer(void *pointer, char identifier)
 
 int	ft_print_signed_number(int nbr, char identifier)
 {
-	int				count;
-	unsigned long	number;
+	int					count;
+	unsigned long long	number;
 
 	count = 0;
 	if (nbr < 0)
 	{
 		count += write(1, "-", 1);
-		number = -(unsigned long)nbr;
+		number = -(unsigned long long)nbr;
 	}
 	else
-		number = (unsigned long)nbr;
+		number = (unsigned long long)nbr;
 	return (count += ft_print_number(number, 10, identifier));
 }
 
-int	ft_print_number(unsigned long nbr, unsigned long base, char identifier)
+int	ft_print_number(unsigned long long nbr, unsigned long long base,
+		char identifier)
 {
 	int		count;
 	char	*set;

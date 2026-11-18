@@ -6,7 +6,7 @@
 /*   By: paziehen <paziehen@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/13 15:28:19 by paziehen         #+#    #+#              */
-/*   Updated: 2026/11/18 21:50:20 by paziehen        ###   ########.fr        */
+/*   Updated: 2026/11/19 00:27:43 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	print_format(va_list *ap, char identifier)
 	else if (identifier == 'd' || identifier == 'i')
 		return (ft_print_signed_number(va_arg(*ap, int), identifier));
 	else if (identifier == 'u')
-		return (ft_print_number((unsigned long)va_arg(*ap, unsigned int), 10,
-				identifier));
+		return (ft_print_number((unsigned long long)va_arg(*ap, unsigned int),
+				10, identifier));
 	else if (identifier == 'x')
-		return (ft_print_number((unsigned long)va_arg(*ap, unsigned int), 16,
-				identifier));
+		return (ft_print_number((unsigned long long)va_arg(*ap, unsigned int),
+				16, identifier));
 	else if (identifier == 'X')
-		return (ft_print_number((unsigned long)va_arg(*ap, unsigned int), 16,
-				identifier));
+		return (ft_print_number((unsigned long long)va_arg(*ap, unsigned int),
+				16, identifier));
 	else if (identifier == 'p')
 		return (ft_print_pointer(va_arg(*ap, void *), identifier));
 	else if (identifier == '%')

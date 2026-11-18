@@ -72,8 +72,8 @@ cc main.c -L. -lftprintf -o demo
 - **No output buffer.** The subject forbids re-implementing the buffer
   management of the original `printf`. Every conversion is written directly
   with `write`, and nothing is kept between conversions or between calls.
-- **One number routine.** All numeric conversions go through a single
-  recursive function that takes an `unsigned long` value and a base (10 or
+- **One number after another.** All numeric conversions go through a single
+  recursive function that takes an `unsigned long long` value and a base (10 or
   16). It prints the higher digits first by recursing on `value / base`, then
   writes the last digit. The recursion depth is bounded by the digit count
   (at most 20 for a 64-bit value).
@@ -82,26 +82,23 @@ cc main.c -L. -lftprintf -o demo
   Recursion avoids an intermediate buffer and any dynamic allocation, so there
   is nothing to free.
 - **Sign handled separately.** For `%d` and `%i` the sign is written first,
-  and the magnitude is computed in unsigned arithmetic (`-(unsigned long)n`).
+  and the magnitude is computed in unsigned arithmetic (`-(unsigned long long)n`).
   This avoids signed overflow for `INT_MIN`.
 - **Pointers.** `%p` reads its argument as `void *` and converts it to
-  `unsigned long`.
+  `uintptr_t`.
 
 ### Deliberate decisions and assumptions
 
 - **`write` errors are not checked.** If `write` fails, the failure is not
   reported and the returned count may be lower than the length of the
   intended output. This is a conscious trade-off in order to keep
-  the focus on learning variadic functions and not drifting off to far.
+  the focus on learning variadic functions and not drifting off too far.
 - **Unsupported specifiers.** An unknown conversion character, or a `%` at the
   end of the format string, makes `ft_printf` stop and return `-1`. Output
   already written stays written.
 - **Null pointers.** `%s` with `NULL` prints `(null)` and `%p` with `NULL`
   prints `(nil)`, matching glibc. Passing `NULL` to `%s` is undefined in
   standard C, so this follows glibc rather than the standard.
-- **Platform.** `(unsigned long)pointer` is implementation-defined. The code
-  assumes a platform where `unsigned long` can hold a pointer, such as LP64
-  Linux or macOS. It isn't portable to LLP64 systems such as 64-bit Windows.
 - **Output compared with libc.** Behaviour was compared against the system
   `printf` for return values and output bytes.
   [You can look up my test cases and program on my Github.](https://github.com/paulischmauli/ft_printf_tester)
